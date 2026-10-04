@@ -1,0 +1,162 @@
+/* gallery.css — the wallpaper grid used on every category page */
+
+.gallery-toolbar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-5);
+}
+.gallery-count{
+  font-size: var(--step-xs);
+  color: var(--ink-dim);
+}
+html[data-daytime="night"] .gallery-count{ color: var(--ink-dim-night); }
+
+.gallery-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-5);
+  padding-bottom: var(--sp-8);
+}
+@media (max-width: 980px){ .gallery-grid{ grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px){ .gallery-grid{ grid-template-columns: 1fr; } }
+
+.wp-card{
+  position: relative;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  box-shadow:
+    var(--shadow-dx) var(--shadow-dy) var(--shadow-blur) var(--shadow-color),
+    calc(var(--shadow-dx) * -1) calc(var(--shadow-dy) * -1) var(--shadow-blur) var(--shadow-color-light);
+  transition: transform var(--dur-base) var(--ease);
+}
+.wp-card:hover{ transform: translateY(-3px); }
+
+.wp-card-highlight{
+  outline: 3px solid var(--sun-accent);
+  outline-offset: 4px;
+}
+
+/* Category pill strip, shown on every gallery page for cross-navigation */
+.category-pills{
+  display: flex;
+  gap: var(--sp-2);
+  overflow-x: auto;
+  padding-bottom: var(--sp-2);
+  margin-bottom: var(--sp-6);
+  scrollbar-width: thin;
+}
+.category-pills a{
+  flex-shrink: 0;
+  padding: 9px 18px;
+  border-radius: var(--r-pill);
+  font-size: var(--step-xs);
+  color: var(--ink-dim);
+  background: var(--base);
+  box-shadow:
+    calc(var(--shadow-dx) * 0.4) calc(var(--shadow-dy) * 0.4) calc(var(--shadow-blur) * 0.35) var(--shadow-color),
+    calc(var(--shadow-dx) * -0.4) calc(var(--shadow-dy) * -0.4) calc(var(--shadow-blur) * 0.35) var(--shadow-color-light);
+}
+html[data-daytime="night"] .category-pills a{ background: var(--base-night); color: var(--ink-dim-night); }
+.category-pills a[aria-current="page"]{
+  color: #fff;
+  background: var(--accent);
+  box-shadow: none;
+}
+
+.wp-card .card-media{
+  position: absolute;
+  inset: 0;
+}
+.wp-card img{
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.wp-card .card-caption h3{
+  font-family: var(--font-display);
+  font-size: var(--step-sm);
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+.wp-card .card-caption p{
+  font-size: var(--step-xs);
+  opacity: 0.85;
+}
+
+/* --- Placeholder gradients shown until a real photo exists at
+       the documented path. Each is a distinct, hand-tuned wash so
+       an un-photographed gallery still looks art-directed. --- */
+.grad-ice{ background: linear-gradient(155deg, #dff3f6 0%, #9cc9d6 45%, #5f89a8 100%); }
+.grad-forest{ background: linear-gradient(155deg, #d7e8c9 0%, #7fa66a 50%, #35502f 100%); }
+.grad-savanna{ background: linear-gradient(155deg, #f7e2ab 0%, #d9a24a 50%, #7a4e21 100%); }
+.grad-alpine{ background: linear-gradient(155deg, #eef3f8 0%, #a9c3dc 45%, #4b6b93 100%); }
+.grad-fjord{ background: linear-gradient(155deg, #d8ecf2 0%, #6fa7bd 50%, #2c4f66 100%); }
+.grad-desert{ background: linear-gradient(155deg, #fbe3c6 0%, #e6a361 50%, #92511f 100%); }
+.grad-aurora{ background: linear-gradient(155deg, #0d1b2a 0%, #1b4d3e 45%, #57c785 100%); }
+.grad-peaks{ background: linear-gradient(155deg, #e7ecf5 0%, #93a4c2 50%, #3a4566 100%); }
+
+.grad-blossom{ background: linear-gradient(155deg, #fde3ea 0%, #f6a8c1 50%, #c1547e 100%); }
+.grad-wheat{ background: linear-gradient(155deg, #fdf0c8 0%, #e8c05f 50%, #a97a22 100%); }
+.grad-maple{ background: linear-gradient(155deg, #fbdcb8 0%, #e0793f 50%, #7a3018 100%); }
+.grad-snow{ background: linear-gradient(155deg, #f3f6fb 0%, #c3d3e6 50%, #7891ad 100%); }
+.grad-lavender{ background: linear-gradient(155deg, #ece2f7 0%, #b18fd6 50%, #5c3d80 100%); }
+.grad-vineyard{ background: linear-gradient(155deg, #f2e6c9 0%, #c68a4a 50%, #5f3a1c 100%); }
+.grad-mist{ background: linear-gradient(155deg, #eef2f0 0%, #b9c9c2 50%, #6c8079 100%); }
+.grad-wetland{ background: linear-gradient(155deg, #e7ecda 0%, #a9b98a 50%, #59613c 100%); }
+
+.grad-river{ background: linear-gradient(155deg, #cdeff0 0%, #5cb3b8 50%, #22636b 100%); }
+.grad-hills{ background: linear-gradient(155deg, #e4f1cf 0%, #93c26a 50%, #3d6b2e 100%); }
+.grad-terrace{ background: linear-gradient(155deg, #e8f2d3 0%, #97be6d 50%, #4c6b2f 100%); }
+.grad-waterfall{ background: linear-gradient(155deg, #e2f2f2 0%, #7fb3ae 50%, #34605a 100%); }
+.grad-meadow{ background: linear-gradient(155deg, #f1f4d7 0%, #c8d98a 50%, #7c8c3f 100%); }
+.grad-lake{ background: linear-gradient(155deg, #dcecf5 0%, #8fb6cf 50%, #3f6485 100%); }
+.grad-emerald{ background: linear-gradient(155deg, #d4f0e4 0%, #5fae8d 50%, #235c46 100%); }
+.grad-marsh{ background: linear-gradient(155deg, #f5e9cf 0%, #d0a95f 50%, #7a5423 100%); }
+
+.grad-tulip{ background: linear-gradient(155deg, #ffe3ea 0%, #ff9db8 50%, #c23d63 100%); }
+.grad-cherry{ background: linear-gradient(155deg, #fdeaf1 0%, #f3b6cb 50%, #b8698c 100%); }
+.grad-elephant{ background: linear-gradient(155deg, #f5e6c8 0%, #c99a58 50%, #6b4a24 100%); }
+.grad-fox{ background: linear-gradient(155deg, #f6f8fb 0%, #cddce8 50%, #6f8ba3 100%); }
+.grad-alpinebloom{ background: linear-gradient(155deg, #eef7e3 0%, #a9cf87 50%, #4f7a3a 100%); }
+.grad-flamingo{ background: linear-gradient(155deg, #ffe6ea 0%, #ff9fae 50%, #b34a5e 100%); }
+.grad-orchid{ background: linear-gradient(155deg, #f3e6f7 0%, #c98fda 50%, #6d3a80 100%); }
+.grad-redfox{ background: linear-gradient(155deg, #fbe5d3 0%, #e08a4d 50%, #7a3c17 100%); }
+
+.grad-godrays{ background: linear-gradient(155deg, #fef6df 0%, #e9c988 40%, #3c4d2c 100%); }
+.grad-valley{ background: linear-gradient(155deg, #e9eef0 0%, #b3c4c8 45%, #5b7075 100%); }
+.grad-lighthouse{ background: linear-gradient(155deg, #e2e9ee 0%, #97a9b7 50%, #445563 100%); }
+.grad-golden{ background: linear-gradient(155deg, #fdedc7 0%, #eeb768 50%, #96631f 100%); }
+.grad-aurorasky{ background: linear-gradient(155deg, #0e1a2b 0%, #274a6b 45%, #63c9a4 100%); }
+.grad-moonfog{ background: linear-gradient(155deg, #1a2233 0%, #384866 50%, #7c8fae 100%); }
+.grad-crepuscular{ background: linear-gradient(155deg, #ffe9d2 0%, #f4a672 45%, #7a4a6b 100%); }
+.grad-rivermist{ background: linear-gradient(155deg, #eef3ee 0%, #b6c8bd 50%, #607164 100%); }
+
+.grad-cabin{ background: linear-gradient(155deg, #e6eef2 0%, #9fb7c4 50%, #3f5865 100%); }
+.grad-villa{ background: linear-gradient(155deg, #fde8dc 0%, #e3a884 50%, #7a4b31 100%); }
+.grad-retreat{ background: linear-gradient(155deg, #e9efe3 0%, #a8bc93 50%, #4d5e3c 100%); }
+.grad-joshua{ background: linear-gradient(155deg, #fbe3c9 0%, #dc9c5e 50%, #7a4c24 100%); }
+.grad-floating{ background: linear-gradient(155deg, #dfeaf2 0%, #94b3c6 50%, #3e5c70 100%); }
+.grad-chalet{ background: linear-gradient(155deg, #eef1f6 0%, #b6c2d6 50%, #566486 100%); }
+.grad-hillside{ background: linear-gradient(155deg, #eaf0df 0%, #a7bd8b 50%, #52633a 100%); }
+.grad-courtyard{ background: linear-gradient(155deg, #e7f0e6 0%, #9fc09a 50%, #45663f 100%); }
+
+.grad-bay{ background: linear-gradient(155deg, #fdecd2 0%, #f2b877 50%, #935a29 100%); }
+.grad-cliffs{ background: linear-gradient(155deg, #ffe0cf 0%, #ef8f68 50%, #7a3a2b 100%); }
+.grad-maldives{ background: linear-gradient(155deg, #d8f4ee 0%, #6bc6c2 50%, #1e6b6e 100%); }
+.grad-footprints{ background: linear-gradient(155deg, #fbe9d6 0%, #dcab7c 50%, #6e4a2c 100%); }
+.grad-rocky{ background: linear-gradient(155deg, #e6edf0 0%, #9fb3bc 50%, #46606b 100%); }
+.grad-palms{ background: linear-gradient(155deg, #d9f2df 0%, #6fb98f 50%, #23573a 100%); }
+.grad-tidepool{ background: linear-gradient(155deg, #dff0ec 0%, #7fb8ab 50%, #305a4d 100%); }
+.grad-driftwood{ background: linear-gradient(155deg, #ffdec2 0%, #e8895f 50%, #6b3a2d 100%); }
+
+.grad-milkyway{ background: linear-gradient(155deg, #0a0f22 0%, #202a52 45%, #6b5aa8 100%); }
+.grad-biolum{ background: linear-gradient(155deg, #071a26 0%, #0d3a4d 45%, #35d6c8 100%); }
+.grad-provence{ background: linear-gradient(155deg, #f4e3f0 0%, #c992c4 45%, #7a3f66 100%); }
+.grad-redwood{ background: linear-gradient(155deg, #e6efe0 0%, #7f9e6d 45%, #33472a 100%); }
+.grad-volcanic{ background: linear-gradient(155deg, #3a2a2a 0%, #7a3f2c 45%, #d97b3c 100%); }
+.grad-desertstars{ background: linear-gradient(155deg, #10162b 0%, #2c3866 45%, #b0834a 100%); }
+.grad-canyon{ background: linear-gradient(155deg, #f6e0c4 0%, #cf8955 45%, #7a3f21 100%); }
+.grad-inversion{ background: linear-gradient(155deg, #eef2f5 0%, #c2cfda 45%, #5c728a 100%); }

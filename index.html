@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ============================================================
+     SEO BLOCK — this pattern (title, description, canonical, OG,
+     Twitter card, JSON-LD) is repeated on every page in /pages/.
+     Only the title/description/canonical/JSON-LD text changes per
+     page; the structure stays identical. See README.md → "SEO" for
+     what to write for each page and where the OG image should live.
+     ============================================================ -->
+<title>Driftline : Nature Wallpapers by Country, Season & Light</title>
+<meta name="description" content="A living wallpaper collection organised by country, season, water, wildlife, light, architecture and shoreline — with a home page clock whose shadows track the real sun.">
+<link rel="canonical" href="https://driftline.example/">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#EDEFF3">
+<link rel="icon" type="image/svg+xml" href="assets/images/ui/favicon.svg">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Driftline — Nature Wallpapers by Country, Season & Light">
+<meta property="og:description" content="Eight curated collections of natural wallpapers, plus a home page clock that shifts its shadows with the real sun.">
+<meta property="og:url" content="https://driftline.example/">
+<meta property="og:image" content="https://driftline.example/assets/images/hero/social-preview.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Driftline",
+  "description": "A wallpaper collection organised by country, season, water, wildlife, light, architecture and shoreline.",
+  "url": "https://driftline.example/"
+}
+</script>
+<!-- ============================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/css/variables.css?v=20260912b">
+<link rel="stylesheet" href="assets/css/base.css?v=20260912b">
+<link rel="stylesheet" href="assets/css/neumorphism.css?v=20260912b">
+<link rel="stylesheet" href="assets/css/glass.css?v=20260912b">
+<link rel="stylesheet" href="assets/css/layout.css?v=20260912b">
+<link rel="stylesheet" href="assets/css/gallery.css?v=20260912b">
+</head>
+<body data-base="">
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<nav class="glass-nav">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html">
+      <span class="mark" aria-hidden="true"></span>
+      Driftline
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" aria-current="page">Home</a></li>
+      <li><a href="index.html#categories">Wallpapers</a></li>
+      <li><a href="settings.html">Settings</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <div class="search-wrap">
+        <input type="search" id="siteSearchInput" placeholder="Search wallpapers…" aria-label="Search wallpapers">
+        <div id="siteSearchResults" hidden></div>
+      </div>
+      <button class="neu-icon-btn nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+
+  <section class="hero container">
+    
+    <h1 class="font-display">Wallpapers that move with the actual sun outside your window</h1> <hr/>
+    <p class="lede">Eight collections of landscapes, wildlife, and quiet architecture — and a home page clock whose shadows lengthen, soften, and swing direction exactly as the real sun does over your location.</p>
+
+    <div class="clock-wrap">
+      <div class="clock-shell neu-surface" role="img" aria-label="Analog clock showing the current time">
+        <div class="clock-face" id="clockFace"></div>
+        <div class="clock-hand hand-hour" id="handHour"></div>
+        <div class="clock-hand hand-minute" id="handMinute"></div>
+        <div class="clock-hand hand-second" id="handSecond"></div>
+        <div class="clock-hub"></div>
+      </div>
+
+      <div class="clock-readout neu-inset">
+        <div class="digital" id="clockDigital" aria-live="off">--:--:--</div>
+        <div class="date-line" id="clockDate">Loading date…</div>
+      </div>
+
+      <div class="sun-status">
+        <span class="dot" id="sunStatusDot" aria-hidden="true"></span>
+        <span id="sunStatusText">Reading the sky…</span>
+      </div>
+    </div>
+  </section>
+<hr/>
+  <section class="section container" id="categories">
+    <div class="section-intro">
+      <span class="eyebrow">Explore</span>
+      <h2 class="section-heading">Eight ways to see the outdoors</h2>
+      <p class="section-sub">Each collection lives on its own page. Pick a mood below, or search for something specific from the nav above.</p>
+    </div>
+
+    <div class="category-grid">
+
+      <a class="category-card neu-surface" href="pages/countries.html">
+        <span class="cat-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 6 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-6-3.8-9s1.3-6.3 3.8-9z"/></svg></span>
+        <h3>Countries &amp; Landscapes</h3>
+        <p>Iceland to Patagonia — eight places, eight moods.</p>
+      </a>
+
+      <a class="category-card neu-surface" href="pages/seasons.html">
+        <span class="cat-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18M4.5 7.5l15 9M19.5 7.5l-15 9"/></svg></span>
+        <h3>Seasons</h3>
+        <p>Blossom, harvest, fire, and frost.</p>
+      </a>
+
+      <a class="category-card neu-surface" href="pages/water-fields.html">
+        <span class="cat-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3c3 4 6 7.2 6 10.5A6 6 0 1 1 6 13.5C6 10.2 9 7 12 3z"/></svg></span>
+        <h3>Water &amp; Green Fields</h3>
+        <p>Rivers, terraces, and open meadow.</p>
+      </a>
+
+      <a class="category-card neu-surface" href="pages/flowers-wildlife.html">
+        <span class="cat-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="2.4"/><path d="M12 9.6C12 7 10.5 5 12 2.5 13.5 5 12 7 12 9.6zM12 14.4c0 2.6 1.5 4.6 0 7.1-1.5-2.5 0-4.5 0-7.1zM14.4 12c2.6 0 4.6 1.5 7.1 0-2.5-1.5-4.5 0-7.1 0zM9.6 12c-2.6 0-4.6-1.5-7.1 0 2.5 1.5 4.5 0 7.1 0z"/></svg></span>
+        <h3>Flowers &amp; Wildlife</h3>
+        <p>Bloom fields and the animals among them.</p>
+      </a>
+
+      <a class="category-card neu-surface" href="pages/light-fog.html">
+        <span class="cat-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="9" r="4"/><path d="M2 20h20M4 16h16M6 12.5h1"/></svg></span>
+        <h3>Light &amp; Fog</h3>
+        <p>Sunbeams, mist, and low golden hour.</p>
+      </a>
+
+      <a class="category-card neu-surface" href="pages/modern-homes.html">
+        <span class="cat-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-7 9 7M5 10v10h14V10"/></svg></span>
+        <h3>Modern Homes in Nature</h3>
+        <p>Glass, timber, and quiet architecture.</p>
+      </a>
+
+      <a class="category-card neu-surface" href="pages/shorelines.html">
+        <span class="cat-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 16c2-2 4-2 6 0s4 2 6 0 4-2 6 0M2 20c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><circle cx="17" cy="7" r="3"/></svg></span>
+        <h3>Shorelines</h3>
+        <p>Sand, tide pools, and sunset cliffs.</p>
+      </a>
+
+      <a class="category-card neu-surface" href="pages/more-wonders.html">
+        <span class="cat-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l1.8 5.4L19 10l-5.2 1.6L12 17l-1.8-5.4L5 10l5.2-1.6L12 3z"/></svg></span>
+        <h3>More Wonders</h3>
+        <p>Starlight, canyons, and everything else beautiful.</p>
+      </a>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <a class="brand" href="index.html">
+          <span class="mark" aria-hidden="true"></span>
+          Driftline
+        </a>
+        <p class="section-sub" style="margin-top:12px; max-width:32ch;">A wallpaper collection that pays attention to what time it actually is.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Collections</h4>
+          <ul>
+            <li><a href="pages/countries.html">Countries &amp; Landscapes</a></li>
+            <li><a href="pages/seasons.html">Seasons</a></li>
+            <li><a href="pages/water-fields.html">Water &amp; Green Fields</a></li>
+            <li><a href="pages/flowers-wildlife.html">Flowers &amp; Wildlife</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>More collections</h4>
+          <ul>
+            <li><a href="pages/light-fog.html">Light &amp; Fog</a></li>
+            <li><a href="pages/modern-homes.html">Modern Homes in Nature</a></li>
+            <li><a href="pages/shorelines.html">Shorelines</a></li>
+            <li><a href="pages/more-wonders.html">More Wonders</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Site</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="settings.html">Settings</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Driftline is a portfolio project. Photography paths throughout are placeholders — see README.md to add your own.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/gallery-data.js?v=20260912b"></script>
+<script src="assets/js/sun-shadow.js?v=20260912b"></script>
+<script src="assets/js/clock.js?v=20260912b"></script>
+<script src="assets/js/nav.js?v=20260912b"></script>
+<script src="assets/js/search.js?v=20260912b"></script>
+</body>
+</html>

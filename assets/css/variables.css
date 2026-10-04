@@ -1,0 +1,92 @@
+/*
+  variables.css
+  --------------------------------------------------------------
+  Design tokens. Everything else in the project reads from here.
+  --sun-* and --shadow-* are NOT set here — they're written at
+  runtime by assets/js/sun-shadow.js, once per minute, based on
+  the visitor's real solar position. Static tokens only below.
+*/
+
+:root{
+  /* ---- Base surface (day) ---- */
+  --base: #EDEFF3;
+  --base-raised: #F3F5F8;
+  --ink: #2B303B;
+  --ink-dim: #6B7280;
+  --ink-faint: #9AA1AF;
+
+  /* ---- Base surface (night — applied via [data-daytime="night"] on <html>) ---- */
+  --base-night: #12141C;
+  --base-raised-night: #171A24;
+  --ink-night: #E7E9F0;
+  --ink-dim-night: #9198AC;
+  --ink-faint-night: #656C82;
+
+  /* ---- Brand accent (static — nature green, used for links/active states) ---- */
+  --accent: #3F8F72;
+  --accent-soft: rgba(63,143,114,0.14);
+  --accent-ink: #2C6A54;
+
+  /* ---- Glass (used sparingly, on overlays only) ---- */
+  --glass-surface: rgba(255,255,255,0.10);
+  --glass-surface-strong: rgba(255,255,255,0.18);
+  --glass-border: rgba(255,255,255,0.22);
+  --glass-surface-night: rgba(18,20,28,0.35);
+  --glass-border-night: rgba(255,255,255,0.10);
+
+  /* ---- Type ---- */
+  --font-display: 'Space Grotesk', 'Segoe UI', sans-serif;
+  --font-body: 'Inter', 'Segoe UI', sans-serif;
+
+  --step-xs: 0.8125rem;   /* 13px */
+  --step-sm: 0.9375rem;   /* 15px */
+  --step-base: 1rem;      /* 16px */
+  --step-md: 1.25rem;     /* 20px */
+  --step-lg: 1.75rem;     /* 28px */
+  --step-xl: 2.75rem;     /* 44px */
+  --step-2xl: 4rem;       /* 64px, hero clock digits */
+
+  /* ---- Spacing ---- */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 72px;
+
+  /* ---- Radius ---- */
+  --r-sm: 10px;
+  --r-md: 18px;
+  --r-lg: 28px;
+  --r-pill: 999px;
+
+  /* ---- Layout ---- */
+  --content-width: 1240px;
+  --nav-height: 76px;
+
+  /* ---- Motion ---- */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 0.15s;
+  --dur-base: 0.35s;
+
+  /*
+    ---- Sun-driven tokens (defaults — overwritten at runtime) ----
+    Defaults describe a mild mid-morning so the page looks correct
+    for the ~1 frame before JS runs.
+  */
+  --sun-elevation: 35;
+  --shadow-dx: 10px;
+  --shadow-dy: 10px;
+  --shadow-blur: 22px;
+  --shadow-color: rgba(163,170,186,0.55);
+  --shadow-color-light: rgba(255,255,255,0.9);
+  --sun-accent: #E3A857;
+  --ambient: 1;
+}
+
+@media (prefers-color-scheme: dark){
+  /* Respected only until sun-shadow.js makes its first real determination */
+  :root{ --base:#12141C; --ink:#E7E9F0; }
+}

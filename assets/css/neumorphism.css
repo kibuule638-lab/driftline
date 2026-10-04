@@ -1,0 +1,203 @@
+/*
+  neumorphism.css
+  --------------------------------------------------------------
+  Every neu-* shadow is built from --shadow-dx/dy/blur/color and
+  --shadow-color-light. Those four variables change every minute
+  (see assets/js/sun-shadow.js), so a card that looks lit from
+  the lower-right at 8am will look lit from the upper-left at 4pm,
+  with longer/softer shadows at both ends of the day and short,
+  crisp ones near solar noon. Nothing below hard-codes a shadow.
+*/
+
+.neu-surface{
+  background: var(--base);
+  border-radius: var(--r-lg);
+  box-shadow:
+    var(--shadow-dx) var(--shadow-dy) var(--shadow-blur) var(--shadow-color),
+    calc(var(--shadow-dx) * -1) calc(var(--shadow-dy) * -1) var(--shadow-blur) var(--shadow-color-light);
+  transition: box-shadow var(--dur-base) var(--ease), background var(--dur-base) var(--ease);
+}
+html[data-daytime="night"] .neu-surface{ background: var(--base-night); }
+
+.neu-inset{
+  background: var(--base);
+  border-radius: var(--r-md);
+  box-shadow:
+    inset var(--shadow-dx) var(--shadow-dy) calc(var(--shadow-blur) * 0.6) var(--shadow-color),
+    inset calc(var(--shadow-dx) * -1) calc(var(--shadow-dy) * -1) calc(var(--shadow-blur) * 0.6) var(--shadow-color-light);
+  transition: box-shadow var(--dur-base) var(--ease), background var(--dur-base) var(--ease);
+}
+html[data-daytime="night"] .neu-inset{ background: var(--base-night); }
+
+.neu-btn{
+  border: none;
+  cursor: pointer;
+  background: var(--base);
+  color: var(--ink);
+  border-radius: var(--r-sm);
+  padding: 12px 20px;
+  font-size: var(--step-sm);
+  font-weight: 500;
+  box-shadow:
+    calc(var(--shadow-dx) * 0.5) calc(var(--shadow-dy) * 0.5) calc(var(--shadow-blur) * 0.45) var(--shadow-color),
+    calc(var(--shadow-dx) * -0.5) calc(var(--shadow-dy) * -0.5) calc(var(--shadow-blur) * 0.45) var(--shadow-color-light);
+  transition: box-shadow var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease), background var(--dur-base) var(--ease), color var(--dur-base) var(--ease);
+}
+html[data-daytime="night"] .neu-btn{ background: var(--base-night); color: var(--ink-night); }
+.neu-btn:active{
+  box-shadow:
+    inset calc(var(--shadow-dx) * 0.5) calc(var(--shadow-dy) * 0.5) calc(var(--shadow-blur) * 0.4) var(--shadow-color),
+    inset calc(var(--shadow-dx) * -0.5) calc(var(--shadow-dy) * -0.5) calc(var(--shadow-blur) * 0.4) var(--shadow-color-light);
+  transform: scale(0.98);
+}
+
+.neu-btn.primary{
+  background: var(--accent);
+  color: #fff;
+  box-shadow:
+    calc(var(--shadow-dx) * 0.5) calc(var(--shadow-dy) * 0.5) calc(var(--shadow-blur) * 0.45) rgba(0,0,0,0.18);
+}
+
+.neu-icon-btn{
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  border: none;
+  background: var(--base);
+  color: var(--ink);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  box-shadow:
+    calc(var(--shadow-dx) * 0.5) calc(var(--shadow-dy) * 0.5) calc(var(--shadow-blur) * 0.4) var(--shadow-color),
+    calc(var(--shadow-dx) * -0.5) calc(var(--shadow-dy) * -0.5) calc(var(--shadow-blur) * 0.4) var(--shadow-color-light);
+  transition: box-shadow var(--dur-fast) var(--ease), color var(--dur-base) var(--ease), background var(--dur-base) var(--ease);
+}
+html[data-daytime="night"] .neu-icon-btn{ background: var(--base-night); color: var(--ink-night); }
+.neu-icon-btn:active{
+  box-shadow:
+    inset calc(var(--shadow-dx) * 0.4) calc(var(--shadow-dy) * 0.4) calc(var(--shadow-blur) * 0.35) var(--shadow-color),
+    inset calc(var(--shadow-dx) * -0.4) calc(var(--shadow-dy) * -0.4) calc(var(--shadow-blur) * 0.35) var(--shadow-color-light);
+}
+
+/* Toggle switch (used in settings) */
+.neu-toggle{
+  --w: 52px; --h: 30px;
+  width: var(--w); height: var(--h);
+  border-radius: var(--r-pill);
+  background: var(--base);
+  border: none;
+  position: relative;
+  cursor: pointer;
+  box-shadow:
+    inset calc(var(--shadow-dx) * 0.4) calc(var(--shadow-dy) * 0.4) calc(var(--shadow-blur) * 0.35) var(--shadow-color),
+    inset calc(var(--shadow-dx) * -0.4) calc(var(--shadow-dy) * -0.4) calc(var(--shadow-blur) * 0.35) var(--shadow-color-light);
+}
+html[data-daytime="night"] .neu-toggle{ background: var(--base-night); }
+.neu-toggle::after{
+  content: "";
+  position: absolute;
+  top: 3px; left: 3px;
+  width: calc(var(--h) - 6px); height: calc(var(--h) - 6px);
+  border-radius: 50%;
+  background: var(--base);
+  box-shadow: 2px 2px 5px var(--shadow-color), -2px -2px 5px var(--shadow-color-light);
+  transition: transform var(--dur-base) var(--ease), background var(--dur-base) var(--ease);
+}
+html[data-daytime="night"] .neu-toggle::after{ background: var(--base-night); }
+.neu-toggle[aria-checked="true"]::after{
+  transform: translateX(calc(var(--w) - var(--h)));
+  background: var(--accent);
+}
+
+/* ---------------- Clock ---------------- */
+
+.clock-wrap{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-5);
+}
+
+.clock-shell{
+  width: min(320px, 62vw);
+  height: min(320px, 62vw);
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clock-face{
+  position: absolute;
+  inset: 22px;
+  border-radius: 50%;
+}
+
+.clock-tick{
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 2px; height: 10px;
+  background: var(--ink-faint);
+  transform-origin: 50% 0;
+  border-radius: 2px;
+}
+html[data-daytime="night"] .clock-tick{ background: var(--ink-faint-night); }
+.clock-tick.major{ height: 14px; width: 3px; background: var(--ink-dim); }
+html[data-daytime="night"] .clock-tick.major{ background: var(--ink-dim-night); }
+
+.clock-hand{
+  position: absolute;
+  bottom: 50%; left: 50%;
+  transform-origin: 50% 100%;
+  border-radius: 6px;
+}
+.hand-hour{ width: 6px; height: 26%; background: var(--ink); margin-left: -3px; }
+.hand-minute{ width: 4px; height: 36%; background: var(--ink-dim); margin-left: -2px; }
+.hand-second{ width: 2px; height: 40%; background: var(--sun-accent); margin-left: -1px; }
+html[data-daytime="night"] .hand-hour{ background: var(--ink-night); }
+html[data-daytime="night"] .hand-minute{ background: var(--ink-dim-night); }
+
+.clock-hub{
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 14px; height: 14px;
+  margin: -7px 0 0 -7px;
+  border-radius: 50%;
+  background: var(--sun-accent);
+  box-shadow: 0 0 0 4px var(--base);
+}
+html[data-daytime="night"] .clock-hub{ box-shadow: 0 0 0 4px var(--base-night); }
+
+.clock-readout{
+  text-align: center;
+  padding: var(--sp-3) var(--sp-6);
+  border-radius: var(--r-pill);
+}
+.clock-readout .digital{
+  font-family: var(--font-display);
+  font-size: var(--step-lg);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  font-variant-numeric: tabular-nums;
+}
+.clock-readout .date-line{
+  font-size: var(--step-xs);
+  color: var(--ink-dim);
+  margin-top: 2px;
+}
+html[data-daytime="night"] .clock-readout .date-line{ color: var(--ink-dim-night); }
+
+.sun-status{
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--step-xs);
+  color: var(--ink-dim);
+}
+html[data-daytime="night"] .sun-status{ color: var(--ink-dim-night); }
+.sun-status .dot{
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--sun-accent);
+  transition: background var(--dur-base) var(--ease);
+}

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Settings — Driftline</title>
+<meta name="description" content="Control how Driftline's sun-driven shadows behave: override day/night, set your location, preview any time of day, or reduce motion and transparency.">
+<link rel="canonical" href="https://driftline.example/settings.html">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#EDEFF3">
+<link rel="icon" type="image/svg+xml" href="assets/images/ui/favicon.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/css/variables.css?v=20260912b">
+<link rel="stylesheet" href="assets/css/base.css?v=20260912b">
+<link rel="stylesheet" href="assets/css/neumorphism.css?v=20260912b">
+<link rel="stylesheet" href="assets/css/glass.css?v=20260912b">
+<link rel="stylesheet" href="assets/css/layout.css?v=20260912b">
+<link rel="stylesheet" href="assets/css/gallery.css?v=20260912b">
+<link rel="stylesheet" href="assets/css/settings.css?v=20260912b">
+</head>
+<body data-base="">
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<nav class="glass-nav">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html">
+      <span class="mark" aria-hidden="true"></span>
+      Driftline
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#categories">Wallpapers</a></li>
+      <li><a href="settings.html" aria-current="page">Settings</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-wrap">
+        <input type="search" id="siteSearchInput" placeholder="Search wallpapers…" aria-label="Search wallpapers">
+        <div id="siteSearchResults" hidden></div>
+      </div>
+      <button class="neu-icon-btn nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main id="main" class="container section">
+
+  <div class="page-hero" style="padding-top:0;">
+    <span class="eyebrow">Settings</span>
+    <h1>Tune how the site reads the sky</h1>
+    <p>These controls are session-only in this preview (see the note at the bottom) — on your own hosting, wire them to localStorage in about ten lines and they'll stick between visits.</p>
+  </div>
+
+  <div class="settings-grid">
+    <nav class="settings-nav neu-surface" aria-label="Settings sections">
+      <a href="#appearance">Appearance</a>
+      <a href="#location">Location</a>
+      <a href="#preview-time">Preview a time of day</a>
+      <a href="#accessibility">Accessibility</a>
+    </nav>
+
+    <div>
+      <section class="settings-panel neu-surface" id="appearance">
+        <h2>Appearance</h2>
+        <p>By default, the whole site follows the real sun at your location. Override it here.</p>
+        <div class="setting-row">
+          <div>
+            <div class="label">Day / night mode</div>
+            <div class="desc">"Follow the sun" recalculates every minute from your location and the clock.</div>
+          </div>
+          <div class="segmented neu-inset" id="appearanceSegmented" role="group" aria-label="Day and night mode">
+            <button type="button" data-mode="auto" aria-pressed="true">Follow the sun</button>
+            <button type="button" data-mode="day" aria-pressed="false">Always day</button>
+            <button type="button" data-mode="night" aria-pressed="false">Always night</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="settings-panel neu-surface" id="location">
+        <h2>Location</h2>
+        <p>Used only to compute solar elevation and azimuth — never sent anywhere. Nothing leaves your browser.</p>
+        <div class="setting-row">
+          <div>
+            <div class="label">Use my device location</div>
+            <div class="desc" id="locationReadout">Estimating from your timezone…</div>
+          </div>
+          <button class="neu-btn" id="useDeviceLocationBtn" type="button">Detect</button>
+        </div>
+        <div class="setting-row">
+          <div>
+            <div class="label">Or set it manually</div>
+            <div class="desc">Latitude / longitude, in decimal degrees.</div>
+          </div>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <input class="neu-inset" id="latInput" type="number" step="0.01" min="-90" max="90" placeholder="Lat" style="width:84px; border:none; padding:10px 12px; border-radius:10px; background:transparent; font-family:inherit; color:inherit;">
+            <input class="neu-inset" id="lonInput" type="number" step="0.01" min="-180" max="180" placeholder="Lon" style="width:84px; border:none; padding:10px 12px; border-radius:10px; background:transparent; font-family:inherit; color:inherit;">
+            <button class="neu-btn primary" id="applyLocationBtn" type="button">Apply</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="settings-panel neu-surface" id="preview-time">
+        <h2>Preview a time of day</h2>
+        <p>Drag to see the clock and every shadow on the site react instantly, without waiting for the actual hour to arrive.</p>
+        <div class="time-sim-row">
+          <input type="range" id="timeSimSlider" min="0" max="1439" step="1" value="720">
+          <div class="time-sim-readout">
+            <span id="timeSimReadout">Following real time</span>
+            <button class="neu-btn" id="useRealTimeBtn" type="button">Use real time</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="settings-panel neu-surface" id="accessibility">
+        <h2>Accessibility</h2>
+        <div class="setting-row">
+          <div>
+            <div class="label">Reduce motion</div>
+            <div class="desc">Stops the clock hands, hover lifts, and entrance animation from easing — they'll snap instead.</div>
+          </div>
+          <button class="neu-toggle" id="reduceMotionToggle" role="switch" aria-checked="false" aria-label="Reduce motion"></button>
+        </div>
+        <div class="setting-row">
+          <div>
+            <div class="label">Reduce transparency</div>
+            <div class="desc">Flattens the glass nav bar and photo captions into solid, high-contrast surfaces.</div>
+          </div>
+          <button class="neu-toggle" id="reduceTransparencyToggle" role="switch" aria-checked="false" aria-label="Reduce transparency"></button>
+        </div>
+      </section>
+
+      <p class="settings-note neu-inset">
+        These settings persist across pages and future visits via your browser's localStorage — change something here, then check Home; it'll still be applied. (If you're viewing this inside a sandboxed preview that blocks localStorage, choices will still apply immediately but won't survive a refresh — that's a preview-environment limit, not a bug.)
+      </p>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <a class="brand" href="index.html">
+          <span class="mark" aria-hidden="true"></span>
+          Driftline
+        </a>
+        <p class="section-sub" style="margin-top:12px; max-width:32ch;">A wallpaper collection that pays attention to what time it actually is.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Collections</h4>
+          <ul>
+            <li><a href="pages/countries.html">Countries &amp; Landscapes</a></li>
+            <li><a href="pages/seasons.html">Seasons</a></li>
+            <li><a href="pages/water-fields.html">Water &amp; Green Fields</a></li>
+            <li><a href="pages/flowers-wildlife.html">Flowers &amp; Wildlife</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>More collections</h4>
+          <ul>
+            <li><a href="pages/light-fog.html">Light &amp; Fog</a></li>
+            <li><a href="pages/modern-homes.html">Modern Homes in Nature</a></li>
+            <li><a href="pages/shorelines.html">Shorelines</a></li>
+            <li><a href="pages/more-wonders.html">More Wonders</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Site</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="settings.html">Settings</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Driftline is a portfolio project. Photography paths throughout are placeholders — see README.md to add your own.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/gallery-data.js?v=20260912b"></script>
+<script src="assets/js/sun-shadow.js?v=20260912b"></script>
+<script src="assets/js/nav.js?v=20260912b"></script>
+<script src="assets/js/search.js?v=20260912b"></script>
+<script src="assets/js/settings.js?v=20260912b"></script>
+</body>
+</html>
